@@ -1,0 +1,26 @@
+services:
+  explorer:
+    image: getumbrel/btc-rpc-explorer:v3.5.1
+    container_name: btc-rpc-explorer
+    restart: unless-stopped
+
+    # 호스트 네트워크 사용 → 컨테이너에서 127.0.0.1:8334 로 로컬 RPC 접근
+    network_mode: "host"
+
+    environment:
+      # 로컬 bitcoind RPC 정보 (요청하신 값으로 반영)
+      BTCEXP_BITCOIND_HOST: "127.0.0.1"
+      BTCEXP_BITCOIND_PORT: "8334"
+      BTCEXP_BITCOIND_USER: "user"
+      BTCEXP_BITCOIND_PASS: "pass"
+
+      # UI/브랜딩 (필요 시 수정)
+      BTCEXP_HOST: "0.0.0.0"
+      BTCEXP_PORT: "3002"
+      BTCEXP_SLOW_DEVICE_MODE: "true"
+      BTCEXP_PRIVACY_MODE: "false"
+      BTCEXP_NO_RATES: "true"
+      BTCEXP_COIN: "BTC"
+      BTCEXP_COIN_LABEL: "BitSeal"
+      BTCEXP_UI_THEME: "dark"
+
